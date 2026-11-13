@@ -1,14 +1,15 @@
-const CACHE_NAME = 'bingo-pro-v2';
+const CACHE_NAME = 'bingo-pro-v3';
+const BASE = '/bingo-pro-app/';
 const urlsToCache = [
-  '/',
-  '/index.html',
-  '/manifest.json',
-  '/icon-192.png',
-  '/icon-512.png',
-  '/lib/tesseract/tesseract.min.js',
-  '/lib/tesseract/worker.min.js',
-  '/lib/tesseract/tesseract-core-simd-lstm.wasm.js',
-  '/lib/lang/eng.traineddata.gz'
+  BASE,
+  BASE + 'index.html',
+  BASE + 'manifest.json',
+  BASE + 'icon-192.png',
+  BASE + 'icon-512.png',
+  BASE + 'lib/tesseract/tesseract.min.js',
+  BASE + 'lib/tesseract/worker.min.js',
+  BASE + 'lib/tesseract/tesseract-core-simd-lstm.wasm.js',
+  BASE + 'lib/lang/eng.traineddata.gz'
 ];
 
 self.addEventListener('install', function(event) {

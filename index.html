@@ -7,7 +7,7 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <title>Bingo Pro - Scanner</title>
-<script src="lib/tesseract/tesseract.min.js"></script>
+<script src="/bingo-pro-app/lib/tesseract/tesseract.min.js"></script>
 <style>
 * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
 :root {
@@ -286,33 +286,34 @@ button.danger { background: var(--danger); }
   min-width: 44px;
   text-align: center;
 }
-.grade-sorteio {
-  display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  gap: 3px;
-}
+
 .col-hdr {
   background: var(--bg-1);
   color: var(--accent-2);
-  padding: 8px 0;
+  padding: 10px 0;
   text-align: center;
   font-weight: 900;
-  font-size: 15px;
+  font-size: 20px;
   border-radius: 6px;
+  letter-spacing: 1px;
 }
 .num-sorteio {
-  background: rgba(255,255,255,0.06);
-  color: rgba(255,255,255,0.85);
-  padding: 9px 2px;
+  background: rgba(255,255,255,0.08);
+  color: #ffffff;
+  padding: 10px 2px;
   text-align: center;
   border-radius: 6px;
-  font-weight: 700;
-  font-size: 13px;
+  font-weight: 800;
+  font-size: 17px;
   cursor: pointer;
   border: 1.5px solid transparent;
   transition: all 0.12s;
   user-select: none;
-  min-height: 36px;
+  min-height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Segoe UI", Roboto, sans-serif;
 }
 .num-sorteio:active { transform: scale(0.93); }
 .num-sorteio.sorteado {
@@ -426,14 +427,81 @@ button.danger { background: var(--danger); }
 }
 @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
 input[type="file"] { display: none; }
+
+
+
+.page.active {
+  display: block;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  padding-bottom: 100px;
+}
+
+.num-sorteio {
+  background: rgba(255,255,255,0.08);
+  color: #ffffff;
+  padding: 10px 2px;
+  text-align: center;
+  border-radius: 6px;
+  font-weight: 800;
+  font-size: 17px;
+  cursor: pointer;
+  border: 1.5px solid transparent;
+  transition: all 0.12s;
+  user-select: none;
+  min-height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Segoe UI", Roboto, sans-serif;
+}
+
+.page {
+  display: none;
+  padding: 16px;
+  animation: fadeIn 0.25s ease;
+  min-height: calc(100vh - 140px);
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+}
+.page.active {
+  display: block;
+}
+.grade-sorteio {
+  display: grid !important;
+  grid-template-columns: repeat(5, 1fr) !important;
+  grid-auto-rows: minmax(36px, auto) !important;
+  gap: 3px !important;
+  margin-top: 4px !important;
+  padding-bottom: 40px !important;
+  width: 100% !important;
+}
+.num-sorteio {
+  background: rgba(255,255,255,0.08);
+  color: #ffffff;
+  padding: 10px 2px;
+  text-align: center;
+  border-radius: 6px;
+  font-weight: 800;
+  font-size: 17px;
+  cursor: pointer;
+  border: 1.5px solid transparent;
+  transition: all 0.12s;
+  user-select: none;
+  min-height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Segoe UI", Roboto, sans-serif;
+}
 </style>
 
-<link rel="manifest" href="manifest.json">
+<link rel="manifest" href="/bingo-pro-app/manifest.json">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="apple-mobile-web-app-title" content="Bingo Pro">
-<link rel="apple-touch-icon" href="icon-192.png">
+<link rel="apple-touch-icon" href="/bingo-pro-app/icon-192.png">
 </head>
 <body>
 
@@ -962,7 +1030,7 @@ renderListaCartelas();
 <script>
 if ('serviceWorker' in navigator) {
   window.addEventListener('load', function() {
-    navigator.serviceWorker.register('sw.js').catch(function(err) {
+    navigator.serviceWorker.register('/bingo-pro-app/sw.js').catch(function(err) {
       console.log('SW registration failed:', err);
     });
   });
@@ -970,6 +1038,18 @@ if ('serviceWorker' in navigator) {
 </script>
 </body>
 </html>
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
