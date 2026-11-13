@@ -7,7 +7,7 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <title>Bingo Pro - Scanner</title>
-<script src="https://cdn.jsdelivr.net/npm/tesseract.js@5/dist/tesseract.min.js"></script>
+<script src="lib/tesseract/tesseract.min.js"></script>
 <style>
 * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
 :root {
@@ -648,6 +648,9 @@ window.processarImagem = async function(event) {
     
     try {
       const result = await Tesseract.recognize(e.target.result, 'eng', {
+        workerPath: 'lib/tesseract/worker.min.js',
+        corePath: 'lib/tesseract/tesseract-core-simd-lstm.wasm.js',
+        langPath: 'lib/lang',
         logger: m => {}
       });
       
@@ -967,5 +970,7 @@ if ('serviceWorker' in navigator) {
 </script>
 </body>
 </html>
+
+
 
 
