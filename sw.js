@@ -1,4 +1,4 @@
-const CACHE_NAME = 'bingo-pro-v3';
+const CACHE_NAME = 'bingo-pro-v5';
 const BASE = '/bingo-pro-app/';
 const urlsToCache = [
   BASE,
@@ -29,14 +29,33 @@ self.addEventListener('activate', function(event) {
         cacheNames.filter(function(name) {
           return name !== CACHE_NAME;
         }).map(function(name) {
+          console.log('Deletando cache antigo:', name);
           return caches.delete(name);
         })
       );
+    }).then(function() {
+      return self.clients.claim();
     })
   );
 });
 
 self.addEventListener('fetch', function(event) {
+  // Forçar recarregamento para index.html (não usar cache antigo)
+  if (event.request.url.endsWith('index.html') || event.request.url === BASE) {
+    event.respondWith(
+      fetch(event.request).then(function(response) {
+        var responseToCache = response.clone();
+        caches.open(CACHE_NAME).then(function(cache) {
+          cache.put(event.request, responseToCache);
+        });
+        return response;
+      }).catch(function() {
+        return caches.match(event.request);
+      })
+    );
+    return;
+  }
+  
   event.respondWith(
     caches.match(event.request)
       .then(function(response) {
